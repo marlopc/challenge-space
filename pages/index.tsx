@@ -1,7 +1,16 @@
+import Background from "containers/Background/Background";
 import type { NextPage } from "next";
+import Head from "next/head";
 
 const Home: NextPage = () => {
-  return <h1>Space Tourism</h1>;
+  return (
+    <>
+      <Head>
+        <title>Space Tourism | Home</title>
+      </Head>
+      <Background page="home"></Background>
+    </>
+  );
 };
 
 export default Home;
