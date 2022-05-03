@@ -1,3 +1,4 @@
+import SharedHead from "components/SharedHead/SharedHead";
 import Layout from "containers/Layout/Layout";
 import type { AppProps } from "next/app";
 import "public/assets/fonts/preload.css";
@@ -8,12 +9,15 @@ import { theme } from "styles/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <>
+      <SharedHead />
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </>
   );
 }
 
