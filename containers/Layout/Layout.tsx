@@ -1,5 +1,4 @@
 import Nav from "components/Nav";
-import Head from "next/head";
 import React from "react";
 import styled from "styled-components";
 
@@ -15,9 +14,6 @@ const Main = styled.main`
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      <Head>
-        <title>Space Tourism</title>
-      </Head>
       <Nav />
       <Main>{children}</Main>
     </>
