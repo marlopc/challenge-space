@@ -11,14 +11,51 @@ declare module "styled-components" {
     fonts: {
       names: [string, string];
       sizes: {
-        heading1: string;
-        heading2: string;
-        heading3: string;
-        heading4: string;
-        heading5: string;
-        subheading1: string;
-        subheading2: string;
-        nav: string;
+        heading1: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        heading2: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        heading3: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        heading4: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        heading5: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        subheading1: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        subheading2: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        nav: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
+        body: {
+          desktop: string;
+          tablet: string;
+          mobile: string;
+        };
       };
       spacing: {
         heading5: string;

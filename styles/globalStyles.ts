@@ -32,4 +32,11 @@ export default createGlobalStyle`
   ol {
     list-style: none;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 400;
+  }
 `;
