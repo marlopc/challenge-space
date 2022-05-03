@@ -2,9 +2,9 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import {
+  above2K,
   desktopOnly,
   mobileAndDesktop,
-  screen2KOnly,
   tabletAndDesktop,
   tabletOnly,
 } from "styles/queries";
@@ -27,7 +27,7 @@ const Wrapper = styled.ul`
     padding: 0 15vw 0 8vw;
   }
 
-  ${screen2KOnly} {
+  ${above2K} {
     padding: 0 195px 0 120px;
   }
 `;
@@ -35,7 +35,7 @@ const Wrapper = styled.ul`
 const A = styled.a<{ prefix: string; isActive: boolean }>`
   display: flex;
   letter-spacing: ${(props) => props.theme.fonts.spacing.nav};
-  font-size: ${(props) => props.theme.fonts.sizes.nav};
+  font-size: ${(props) => props.theme.fonts.sizes.nav.mobile};
   font-weight: 400;
   width: 100%;
   padding: 5px 0 5px 15px;
@@ -43,7 +43,10 @@ const A = styled.a<{ prefix: string; isActive: boolean }>`
   align-items: center;
   border-right: 3px solid
     ${(props) => (props.isActive ? props.theme.colors.white : "transparent")};
-  transition: border-color 100ms ease;
+
+  ${tabletOnly} {
+    font-size: ${(props) => props.theme.fonts.sizes.nav.tablet};
+  }
 
   ${mobileAndDesktop} {
     &::before {
@@ -60,6 +63,12 @@ const A = styled.a<{ prefix: string; isActive: boolean }>`
     height: 100%;
     border-bottom: 3px solid
       ${(props) => (props.isActive ? props.theme.colors.white : "transparent")};
+    transition: border-color 200ms ease;
+
+    &:hover {
+      border-color: ${(props) =>
+        props.theme.colors[props.isActive ? "white" : "grey"]};
+    }
   }
 `;
 
@@ -74,7 +83,7 @@ const NavItem: React.FC<LinkProps & { label: string; prefix: string }> = ({
 
   return (
     <li>
-      <Link {...linkProps}>
+      <Link passHref {...linkProps}>
         <A prefix={prefix} isActive={isActive}>
           {label}
         </A>

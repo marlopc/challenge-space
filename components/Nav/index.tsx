@@ -6,9 +6,9 @@ import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import {
+  above2K,
   desktopOnly,
   mobileOnly,
-  screen2KOnly,
   tabletAndDesktop,
   tabletOnly,
 } from "styles/queries";
@@ -47,7 +47,7 @@ const Wrapper = styled.nav`
     top: 40px;
   }
 
-  ${screen2KOnly} {
+  ${above2K} {
     left: calc(50vw - 720px);
   }
 `;
@@ -124,14 +124,18 @@ const Nav: React.FC = () => {
   return (
     <Wrapper>
       <Link href="/" passHref>
-        <HomeLogo />
+        <HomeLogo aria-label="Home" />
       </Link>
-      <DrawerOpenButton onClick={open} ref={burguerRef}>
+      <DrawerOpenButton
+        onClick={open}
+        ref={burguerRef}
+        aria-label="Open drawer"
+      >
         <Burger />
       </DrawerOpenButton>
       <Line />
       <DrawerOrBar isOpen={isOpen} ref={drawerRef}>
-        <DrawerCloseButton onClick={close}>
+        <DrawerCloseButton onClick={close} aria-label="Close drawer">
           <Close />
         </DrawerCloseButton>
         <NavLinks />
