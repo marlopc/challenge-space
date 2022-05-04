@@ -1,10 +1,9 @@
 import { Burger, Close } from "components/icons";
 import NavLinks from "components/Nav/NavLinks";
-import useClickOutside from "hooks/useClickOutside";
-import useMenu from "hooks/useMenu";
+import useDrawer from "hooks/useDrawer";
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   above2K,
   desktopOnly,
@@ -12,6 +11,8 @@ import {
   tabletAndDesktop,
   tabletOnly,
 } from "styles/breakpoints";
+
+const DRAWER_ANIMATION_TIME = 150;
 
 const drawerButtons = `
   width: 48px;
@@ -89,7 +90,7 @@ const Line = styled.div`
   }
 `;
 
-const DrawerOrBar = styled.div<{ isOpen: boolean }>`
+const DrawerOrBar = styled.div<{ isOpen: boolean; isHiding: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
@@ -102,8 +103,15 @@ const DrawerOrBar = styled.div<{ isOpen: boolean }>`
   ${(props) => props.theme.effects.glass};
 
   ${mobileOnly} {
-    transition: transform 150ms ease;
+    transition: transform ${DRAWER_ANIMATION_TIME}ms ease;
     transform: translateX(${(props) => (props.isOpen ? "0" : "100%")});
+
+    ${(props) =>
+      !props.isHiding &&
+      !props.isOpen &&
+      css`
+        visibility: hidden;
+      `}
   }
 
   ${tabletAndDesktop} {
@@ -117,9 +125,14 @@ const DrawerOrBar = styled.div<{ isOpen: boolean }>`
 const Nav: React.FC = () => {
   const drawerRef = React.useRef<HTMLDivElement>(null);
   const burguerRef = React.useRef<HTMLButtonElement>(null);
+  const closeDrawerRef = React.useRef<HTMLButtonElement>(null);
 
-  const { close, isOpen, open } = useMenu();
-  useClickOutside([drawerRef, burguerRef], close);
+  const { animatedClose, isHiding, isOpen, open } = useDrawer(
+    drawerRef,
+    burguerRef,
+    closeDrawerRef,
+    DRAWER_ANIMATION_TIME
+  );
 
   return (
     <Wrapper>
@@ -134,8 +147,12 @@ const Nav: React.FC = () => {
         <Burger />
       </DrawerOpenButton>
       <Line />
-      <DrawerOrBar isOpen={isOpen} ref={drawerRef}>
-        <DrawerCloseButton onClick={close} aria-label="Close drawer">
+      <DrawerOrBar isOpen={isOpen} isHiding={isHiding} ref={drawerRef}>
+        <DrawerCloseButton
+          onClick={animatedClose}
+          ref={closeDrawerRef}
+          aria-label="Close drawer"
+        >
           <Close />
         </DrawerCloseButton>
         <NavLinks />
