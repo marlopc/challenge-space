@@ -47,6 +47,7 @@ const TextWrapper = styled.div`
   flex: 1;
 
   ${desktopOnly} {
+    align-items: flex-start;
     flex: none;
   }
 `;
