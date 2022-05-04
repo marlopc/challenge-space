@@ -1,3 +1,4 @@
+import { NavText } from "components/Text";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -7,7 +8,7 @@ import {
   mobileAndDesktop,
   tabletAndDesktop,
   tabletOnly,
-} from "styles/queries";
+} from "styles/breakpoints";
 
 const Wrapper = styled.ul`
   display: flex;
@@ -34,9 +35,6 @@ const Wrapper = styled.ul`
 
 const A = styled.a<{ prefix: string; isActive: boolean }>`
   display: flex;
-  letter-spacing: ${(props) => props.theme.fonts.spacing.nav};
-  font-size: ${(props) => props.theme.fonts.sizes.nav.mobile};
-  font-weight: 400;
   width: 100%;
   padding: 5px 0 5px 15px;
   min-height: 48px;
@@ -44,12 +42,9 @@ const A = styled.a<{ prefix: string; isActive: boolean }>`
   border-right: 3px solid
     ${(props) => (props.isActive ? props.theme.colors.white : "transparent")};
 
-  ${tabletOnly} {
-    font-size: ${(props) => props.theme.fonts.sizes.nav.tablet};
-  }
-
   ${mobileAndDesktop} {
     &::before {
+      letter-spacing: ${(props) => props.theme.fonts.spacing.nav};
       margin-right: 8px;
       font-weight: 700;
       min-width: 20px;
@@ -67,7 +62,7 @@ const A = styled.a<{ prefix: string; isActive: boolean }>`
 
     &:hover {
       border-color: ${(props) =>
-        props.theme.colors[props.isActive ? "white" : "grey"]};
+        props.theme.colors[props.isActive ? "white" : "transparentWhite"]};
     }
   }
 `;
@@ -85,7 +80,7 @@ const NavItem: React.FC<LinkProps & { label: string; prefix: string }> = ({
     <li>
       <Link passHref {...linkProps}>
         <A prefix={prefix} isActive={isActive}>
-          {label}
+          <NavText>{label}</NavText>
         </A>
       </Link>
     </li>

@@ -11,7 +11,7 @@ import {
   mobileOnly,
   tabletAndDesktop,
   tabletOnly,
-} from "styles/queries";
+} from "styles/breakpoints";
 
 const drawerButtons = `
   width: 48px;

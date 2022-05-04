@@ -1,5 +1,5 @@
 import styled, { DefaultTheme } from "styled-components";
-import { desktopOnly, tabletOnly } from "styles/queries";
+import { desktopOnly, tabletOnly } from "styles/breakpoints";
 
 export default styled.div<{ page: keyof DefaultTheme["background"] }>`
   min-height: 100vh;

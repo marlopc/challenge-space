@@ -5,7 +5,9 @@ const theme: DefaultTheme = {
     white: "#ffffff",
     primary: "#0b0d17",
     secon: "#d0d6f9",
-    grey: "#ffffff88",
+    transparentWhite: "#ffffff88",
+    grey: "#cccccc",
+    black: "#000000",
   },
   fonts: {
     names: ["Bellefair", "Barlow Condensed"],
@@ -57,7 +59,7 @@ const theme: DefaultTheme = {
       },
     },
     spacing: {
-      heading5: "0.2em",
+      heading5: "0.18em",
       subheading2: "2.35px",
       nav: "2.7px",
     },
