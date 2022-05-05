@@ -39,4 +39,24 @@ export default createGlobalStyle`
   h4 {
     font-weight: 400;
   }
+
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #d0d6f9 #0b0d17;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.colors.primary};
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.colors.white};
+  }
 `;

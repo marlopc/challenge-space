@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   min-height: 524px;
   height: calc(100vh - 86px);
   justify-content: space-between;
-  padding: 5vh 35px 20px;
+  padding: 5vh 30px 20px;
 
   ${tabletOnly} {
     min-height: 817px;

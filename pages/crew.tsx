@@ -1,3 +1,4 @@
+import TopStepMessage from "components/TopStepMessage/TopStepMessage";
 import Background from "containers/Background/Background";
 import Head from "next/head";
 import React from "react";
@@ -8,7 +9,9 @@ const Crew = () => {
       <Head>
         <title>Space Tourism | Crew</title>
       </Head>
-      <Background page="crew"></Background>
+      <Background page="crew">
+        <TopStepMessage prefix="02" message="Meet your crew" />
+      </Background>
     </>
   );
 };

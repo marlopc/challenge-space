@@ -33,6 +33,7 @@ const Wrapper = styled.nav`
   max-width: 1440px;
   height: 86px;
   padding: 0 6px 0 24px;
+  z-index: 99;
 
   ${tabletAndDesktop} {
     height: 96px;

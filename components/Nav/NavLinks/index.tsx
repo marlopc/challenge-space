@@ -72,9 +72,9 @@ const NavItem: React.FC<LinkProps & { label: string; prefix: string }> = ({
   prefix,
   ...linkProps
 }) => {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
 
-  const isActive = asPath === linkProps.href;
+  const isActive = pathname === linkProps.href;
 
   return (
     <li>
