@@ -25,7 +25,8 @@ export default createGlobalStyle`
     background: ${(props) => props.theme.colors.primary};
     font-family: ${(props) => props.theme.fonts.names[1]}, sans-serif;
     text-transform: uppercase;
-    color: ${(props) => props.theme.colors.white}
+    color: ${(props) => props.theme.colors.white};
+    -webkit-tap-highlight-color: transparent;
   }
 
   ul,
@@ -40,7 +41,6 @@ export default createGlobalStyle`
     font-weight: 400;
   }
 
-  /* ===== Scrollbar CSS ===== */
   /* Firefox */
   * {
     scrollbar-width: thin;

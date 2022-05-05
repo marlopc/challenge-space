@@ -6,7 +6,7 @@ const theme: DefaultTheme = {
     primary: "#0b0d17",
     secon: "#d0d6f9",
     transparentWhite: "#ffffff88",
-    grey: "#cccccc",
+    grey: "#aaaaaa",
     black: "#000000",
   },
   fonts: {
