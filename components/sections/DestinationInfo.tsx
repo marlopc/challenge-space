@@ -60,10 +60,15 @@ const ImageSlidesWrapper = styled.figure`
   }
 `;
 
-const ImageSlide = styled(Image)<{ isSelected: boolean }>`
-  opacity: ${(props) => (props.isSelected ? "1" : "0")};
-  z-index: ${(props) => (props.isSelected ? "1" : "0")};
+const ImageSlide = styled(Image)`
+  opacity: 0;
+  z-index: 0;
   transition: opacity 300ms ease;
+
+  &[data-selected="true"] {
+    opacity: 1;
+    z-index: 1;
+  }
 `;
 
 const TabsAndInfoWrapper = styled.div`
@@ -146,14 +151,15 @@ const DestinationInfo = () => {
   return (
     <Wrapper>
       <ImageSlidesWrapper>
-        {items.map((destination) => (
+        {items.map((destination, index) => (
           <ImageSlide
-            isSelected={destination.isSelected}
+            data-selected={destination.isSelected}
             key={destination.id}
             src={destination.images.png}
             layout="fill"
             objectFit="contain"
             alt={destination.name}
+            priority={index === 0}
           />
         ))}
       </ImageSlidesWrapper>

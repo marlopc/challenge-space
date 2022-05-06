@@ -68,10 +68,15 @@ const ImageSlidesWrapper = styled.figure`
   }
 `;
 
-const ImageSlide = styled(Image)<{ isSelected: boolean }>`
-  opacity: ${(props) => (props.isSelected ? "1" : "0")};
-  opacity: ${(props) => (props.isSelected ? "1" : "0")};
+const ImageSlide = styled(Image)`
+  opacity: 0;
+  z-index: 0;
   transition: opacity 300ms ease;
+
+  &[data-selected="true"] {
+    opacity: 1;
+    z-index: 1;
+  }
 `;
 
 const InfoAndBulletsWrapper = styled.div`
@@ -145,14 +150,15 @@ const CrewInfo = () => {
   return (
     <Wrapper>
       <ImageSlidesWrapper>
-        {items.map((member) => (
+        {items.map((member, index) => (
           <ImageSlide
             key={member.id}
             src={member.images.png}
             layout="fill"
             objectFit="contain"
             objectPosition="bottom"
-            isSelected={member.isSelected}
+            data-selected={member.isSelected}
+            priority={index === 0}
           />
         ))}
       </ImageSlidesWrapper>

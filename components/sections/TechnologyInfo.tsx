@@ -50,7 +50,7 @@ const ImageSlidesWrapper = styled.figure`
   }
 `;
 
-const ImageSlide = styled.div<{ sources: ImageSources; isSelected: boolean }>`
+const ImageSlide = styled.div<{ sources: ImageSources }>`
   width: 100%;
   height: 41vw;
   max-height: 590px;
@@ -58,9 +58,14 @@ const ImageSlide = styled.div<{ sources: ImageSources; isSelected: boolean }>`
   background-image: ${(props) => `url(${props.sources.landscape})`};
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: ${(props) => (props.isSelected ? "1" : "0")};
-  z-index: ${(props) => (props.isSelected ? "1" : "0")};
+  opacity: 0;
+  z-index: 0;
   transition: opacity 300ms ease;
+
+  &[data-selected="true"] {
+    opacity: 1;
+    z-index: 1;
+  }
 
   ${desktopOnly} {
     background-image: ${(props) => `url(${props.sources.portrait})`};
@@ -129,7 +134,7 @@ const TechnologyInfo = () => {
         {items.map((tech) => (
           <ImageSlide
             sources={tech.images}
-            isSelected={tech.isSelected}
+            data-selected={tech.isSelected}
             key={tech.id}
           />
         ))}
