@@ -6,6 +6,7 @@ import data from "public/data.json";
 import React from "react";
 import styled from "styled-components";
 import {
+  above2K,
   desktopOnly,
   tabletAndDesktop,
   tabletMin,
@@ -30,10 +31,15 @@ const Wrapper = styled.div`
   }
 
   ${desktopOnly} {
-    padding: 80px 0;
+    padding: 80px 13vw;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: flex-start;
+    gap: 50px;
+  }
+
+  ${above2K} {
+    padding: 80px 187px;
   }
 `;
 
@@ -49,7 +55,7 @@ const ImageSlidesWrapper = styled.figure`
   }
 
   @media (min-width: 1050px) {
-    width: 445px;
+    width: 60%;
     height: 445px;
   }
 `;
@@ -68,7 +74,9 @@ const TabsAndInfoWrapper = styled.div`
   gap: 30px;
 
   ${desktopOnly} {
-    width: 445px;
+    min-width: min-content;
+    width: 40%;
+    align-items: flex-start;
   }
 `;
 
@@ -91,15 +99,30 @@ const InfoWrapper = styled.div<{ isSelected: boolean }>`
   z-index: ${(props) => (props.isSelected ? "1" : "0")};
   transition: opacity 300ms ease;
   gap: 20px;
+
+  ${desktopOnly} {
+    align-items: flex-start;
+  }
+`;
+
+const Description = styled(BodyText)`
+  text-align: center;
+
+  ${desktopOnly} {
+    text-align: start;
+  }
 `;
 
 const StatsWrapper = styled.div`
   width: 100%;
   border-top: 1px solid ${(props) => props.theme.colors.transparentWhite};
 
+  ${tabletOnly} {
+    justify-content: center;
+  }
+
   ${tabletAndDesktop} {
     display: flex;
-    justify-content: center;
     margin-top: 10px;
   }
 `;
@@ -111,7 +134,9 @@ const Stat = styled.div`
   margin: 30px;
 
   ${desktopOnly} {
+    align-items: flex-start;
     gap: 5px;
+    margin-left: 0;
   }
 `;
 
@@ -127,6 +152,7 @@ const DestinationInfo = () => {
             key={destination.id}
             src={destination.images.png}
             layout="fill"
+            objectFit="contain"
             alt={destination.name}
           />
         ))}
@@ -140,9 +166,7 @@ const DestinationInfo = () => {
               isSelected={destination.id === selected}
             >
               <Heading2>{destination.name}</Heading2>
-              <BodyText color="secon" center>
-                {destination.description}
-              </BodyText>
+              <Description color="secon">{destination.description}</Description>
               <StatsWrapper>
                 <Stat>
                   <Subheading2 color="secon">Avg. distance</Subheading2>

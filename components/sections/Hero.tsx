@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   min-height: 524px;
   height: calc(100vh - 86px);
   justify-content: space-between;
-  padding: 5vh 30px 20px;
+  padding: 5vh 30px 30px;
 
   ${tabletOnly} {
     min-height: 817px;
@@ -20,7 +20,8 @@ const Wrapper = styled.div`
 
   ${desktopOnly} {
     width: 90%;
-    max-height: calc(100vh - 180px);
+    height: calc(100vh - 180px);
+    max-height: 700px;
     min-height: 465px;
     gap: 35px;
     flex-direction: row;

@@ -29,7 +29,7 @@ const MessageWithPrefix = styled(Heading5)<{ prefix: string }>`
 
   ${desktopOnly} {
     padding-top: 2vh;
-    padding-left: 13vw;
+    padding-left: 12vw;
     padding-bottom: 0;
   }
 
@@ -45,7 +45,11 @@ const MessageWithPrefix = styled(Heading5)<{ prefix: string }>`
 `;
 
 const TopStepMessage: React.FC<TopStepMessageProps> = ({ message, prefix }) => {
-  return <MessageWithPrefix prefix={prefix}>{message}</MessageWithPrefix>;
+  return (
+    <MessageWithPrefix prefix={prefix} as="h1">
+      {message}
+    </MessageWithPrefix>
+  );
 };
 
 export default TopStepMessage;

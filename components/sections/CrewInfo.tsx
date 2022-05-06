@@ -38,6 +38,8 @@ const Wrapper = styled.div`
     margin-top: -55px;
     padding: 0;
     align-items: flex-end;
+    max-height: 885px;
+    min-height: auto;
   }
 `;
 
@@ -62,6 +64,7 @@ const ImageSlidesWrapper = styled.figure`
     width: 45%;
     height: calc(100vh - 160px);
     min-height: 537px;
+    max-height: 885px;
   }
 `;
 
@@ -82,8 +85,8 @@ const InfoAndBulletsWrapper = styled.div`
 
   ${desktopOnly} {
     width: 50%;
-    padding-bottom: 50px;
-    gap: 60px;
+    padding-bottom: 30px;
+    gap: 50px;
   }
 `;
 
@@ -96,7 +99,7 @@ const InfoSlidesWrapper = styled.div`
   }
 `;
 
-const InfoWrapper = styled.div<{ isSelected: boolean }>`
+const InfoWrapper = styled.article<{ isSelected: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,7 +135,7 @@ const InfoWrapper = styled.div<{ isSelected: boolean }>`
 
 const Bio = styled(BodyText)`
   ${desktopOnly} {
-    max-width: 850px;
+    max-width: 400px;
   }
 `;
 
@@ -164,7 +167,7 @@ const CrewInfo = () => {
           {crew.map((member) => (
             <InfoWrapper key={member.id} isSelected={member.id === selected}>
               <Heading4 color="grey">{member.role}</Heading4>
-              <Heading3>{member.name}</Heading3>
+              <Heading3 as="h2">{member.name}</Heading3>
               <Bio color="secon" center>
                 {member.bio}
               </Bio>
