@@ -4,14 +4,13 @@ import styled, { css } from "styled-components";
 import { desktopOnly } from "styles/breakpoints";
 
 type TabItem = {
-  id: string | number;
+  isSelected: boolean;
   label: string;
 };
 
 type TabsProps = {
   readonly tabs: TabItem[];
-  selected: TabItem["id"];
-  onSelection: (id: TabItem["id"]) => void;
+  onSelection: (index: number) => void;
 };
 
 const Wrapper = styled.ul`
@@ -37,12 +36,12 @@ const Tab = styled.li<{ isSelected: boolean }>`
   }
 `;
 
-const Tabs: React.FC<TabsProps> = ({ tabs, selected, onSelection }) => {
+const Tabs: React.FC<TabsProps> = ({ tabs, onSelection }) => {
   return (
     <Wrapper>
-      {tabs.map((tab) => (
-        <Tab key={tab.id} isSelected={selected === tab.id}>
-          <button onClick={() => onSelection(tab.id)}>
+      {tabs.map((tab, index) => (
+        <Tab key={index} isSelected={tab.isSelected}>
+          <button onClick={() => onSelection(index)}>
             <NavText>{tab.label}</NavText>
           </button>
         </Tab>

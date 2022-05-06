@@ -11,6 +11,7 @@ export default styled.p<{ color?: "main" | "secon"; center?: boolean }>`
       text-transform: none;
       letter-spacing: 0.05em;
       line-height: calc(${fonts.sizes.body.mobile} + 9px);
+      font-weight: 300;
       ${props.color === "secon" &&
       css`
         color: ${props.theme.colors.secon};

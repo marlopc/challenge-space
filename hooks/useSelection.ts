@@ -1,19 +1,29 @@
 import React from "react";
 
-type SelectionId = string | number;
+type SelectionItems = { isSelected: boolean };
 
-const useSelection = <T extends { id: SelectionId }>(items: T[]) => {
-  const [selected, setSelected] = React.useState(items[0].id);
+const getInitialSelection = <T>(items: T[]): (T & SelectionItems)[] => {
+  return items.map((item, index) => ({ ...item, isSelected: index === 0 }));
+};
 
-  function select(id: SelectionId): void;
-  function select(itemOrId: { id: SelectionId } | SelectionId): void {
-    const selection = typeof itemOrId === "object" ? itemOrId.id : itemOrId;
+const useSelection = <T>(items: T[]) => {
+  const [selection, setSelection] = React.useState(getInitialSelection(items));
+  const [currentIndex, setCurrentIndex] = React.useState(0);
 
-    setSelected(selection);
-  }
+  const select = (index: number) => {
+    if (index === currentIndex) return;
+
+    const newSelection = [...selection];
+
+    newSelection[currentIndex].isSelected = false;
+    newSelection[index].isSelected = true;
+
+    setSelection(newSelection);
+    setCurrentIndex(index);
+  };
 
   return {
-    selected,
+    items: selection,
     select,
   };
 };

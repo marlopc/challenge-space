@@ -140,32 +140,27 @@ const Bio = styled(BodyText)`
 `;
 
 const CrewInfo = () => {
-  const { select, selected } = useSelection(crew);
+  const { select, items } = useSelection(crew);
 
   return (
     <Wrapper>
       <ImageSlidesWrapper>
-        {crew.map((member) => (
+        {items.map((member) => (
           <ImageSlide
             key={member.id}
             src={member.images.png}
             layout="fill"
             objectFit="contain"
             objectPosition="bottom"
-            isSelected={member.id === selected}
+            isSelected={member.isSelected}
           />
         ))}
       </ImageSlidesWrapper>
       <InfoAndBulletsWrapper>
-        <Bullets
-          type="small"
-          items={crew}
-          onSelection={select}
-          selected={selected}
-        />
+        <Bullets type="small" items={items} onSelection={select} />
         <InfoSlidesWrapper>
-          {crew.map((member) => (
-            <InfoWrapper key={member.id} isSelected={member.id === selected}>
+          {items.map((member) => (
+            <InfoWrapper key={member.id} isSelected={member.isSelected}>
               <Heading4 color="grey">{member.role}</Heading4>
               <Heading3 as="h2">{member.name}</Heading3>
               <Bio color="secon" center>

@@ -141,14 +141,14 @@ const Stat = styled.div`
 `;
 
 const DestinationInfo = () => {
-  const { select, selected } = useSelection(destinations);
+  const { items, select } = useSelection(destinations);
 
   return (
     <Wrapper>
       <ImageSlidesWrapper>
-        {destinations.map((destination) => (
+        {items.map((destination) => (
           <ImageSlide
-            isSelected={destination.id === selected}
+            isSelected={destination.isSelected}
             key={destination.id}
             src={destination.images.png}
             layout="fill"
@@ -158,12 +158,12 @@ const DestinationInfo = () => {
         ))}
       </ImageSlidesWrapper>
       <TabsAndInfoWrapper>
-        <Tabs onSelection={select} selected={selected} tabs={destinations} />
+        <Tabs onSelection={select} tabs={items} />
         <InfoSlidesWrapper>
-          {destinations.map((destination) => (
+          {items.map((destination) => (
             <InfoWrapper
               key={destination.id}
-              isSelected={destination.id === selected}
+              isSelected={destination.isSelected}
             >
               <Heading2>{destination.name}</Heading2>
               <Description color="secon">{destination.description}</Description>

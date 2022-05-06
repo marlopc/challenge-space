@@ -7,8 +7,8 @@
 
 @font-face {
   font-family: "Barlow Condensed";
-  src: url("/assets/fonts/BarlowCondensed-Regular.ttf");
-  font-weight: 400;
+  src: url("/assets/fonts/BarlowCondensed-Light.ttf");
+  font-weight: 300;
   font-display: swap;
 }
 

@@ -11,6 +11,7 @@ export default styled.p<{ color?: "main" | "secon" }>`
   text-transform: uppercase;
   letter-spacing: ${(props) => props.theme.fonts.spacing.nav};
   font-size: ${(props) => props.theme.fonts.sizes.nav.mobile};
+  font-weight: 300;
 
   ${tabletOnly} {
     font-size: ${(props) => props.theme.fonts.sizes.nav.tablet};

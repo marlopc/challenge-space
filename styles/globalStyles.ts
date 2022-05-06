@@ -38,7 +38,7 @@ export default createGlobalStyle`
   h2,
   h3,
   h4 {
-    font-weight: 400;
+    font-weight: 300;
   }
 
   /* Firefox */

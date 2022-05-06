@@ -13,7 +13,7 @@ const SharedHead: React.FC = () => {
       />
       <link
         rel="preload"
-        href="/assets/fonts/BarlowCondensed-Regular.ttf"
+        href="/assets/fonts/BarlowCondensed-Light.ttf"
         as="font"
         type="font/ttf"
         crossOrigin="anonymous"
