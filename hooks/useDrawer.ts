@@ -27,7 +27,9 @@ const useDrawer = (
     }, animationTime);
   }, [animationTime, close]);
 
-  useClickOutside([drawerRef, initiatorRef], close);
+  useClickOutside([drawerRef, initiatorRef], () => {
+    setIsOpen(false);
+  });
 
   React.useEffect(() => {
     const handler = (e: KeyboardEvent) => {
