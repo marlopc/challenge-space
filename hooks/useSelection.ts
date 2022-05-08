@@ -1,6 +1,6 @@
 import React from "react";
 
-type SelectionItems = { isSelected: boolean };
+export type SelectionItems = { isSelected: boolean };
 
 const getInitialSelection = <T>(items: T[]): (T & SelectionItems)[] => {
   return items.map((item, index) => ({ ...item, isSelected: index === 0 }));

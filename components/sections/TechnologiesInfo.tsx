@@ -1,6 +1,6 @@
 import Bullets from "components/Bullets/Bullets";
 import { BodyText, Heading3, NavText } from "components/Text";
-import useSelection from "hooks/useSelection";
+import useSelection, { SelectionItems } from "hooks/useSelection";
 import data from "public/data.json";
 import React from "react";
 import styled from "styled-components";
@@ -126,7 +126,23 @@ const Description = styled(BodyText)`
   max-width: 458px;
 `;
 
-const TechnologyInfo = () => {
+const TechnologyInfo: React.FC<{
+  technology: typeof technologies[number] & SelectionItems;
+}> = ({ technology }) => {
+  return (
+    <InfoWrapper
+      key={technology.id}
+      isSelected={technology.isSelected}
+      aria-hidden={!technology.isSelected}
+    >
+      <NavText color="secon">The terminology...</NavText>
+      <Heading3>{technology.name}</Heading3>
+      <Description color="secon">{technology.description}</Description>
+    </InfoWrapper>
+  );
+};
+
+const TechnologiesInfo: React.FC = () => {
   const { select, items } = useSelection(technologies);
   return (
     <Wrapper>
@@ -145,16 +161,8 @@ const TechnologyInfo = () => {
       <InfoAndBulletsWrapper>
         <NumericBullets items={items} onSelection={select} />
         <InfoSlidesWrapper>
-          {items.map((tech) => (
-            <InfoWrapper
-              key={tech.id}
-              isSelected={tech.isSelected}
-              aria-hidden={!tech.isSelected}
-            >
-              <NavText color="secon">The terminology...</NavText>
-              <Heading3>{tech.name}</Heading3>
-              <Description color="secon">{tech.description}</Description>
-            </InfoWrapper>
+          {items.map((technology) => (
+            <TechnologyInfo key={technology.id} technology={technology} />
           ))}
         </InfoSlidesWrapper>
       </InfoAndBulletsWrapper>
@@ -162,4 +170,4 @@ const TechnologyInfo = () => {
   );
 };
 
-export default TechnologyInfo;
+export default TechnologiesInfo;

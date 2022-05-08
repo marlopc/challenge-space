@@ -1,6 +1,6 @@
 import Tabs from "components/Tabs/Tabs";
 import { BodyText, Heading2, Subheading1, Subheading2 } from "components/Text";
-import useSelection from "hooks/useSelection";
+import useSelection, { SelectionItems } from "hooks/useSelection";
 import Image from "next/image";
 import data from "public/data.json";
 import React from "react";
@@ -145,7 +145,31 @@ const Stat = styled.div`
   }
 `;
 
-const DestinationInfo = () => {
+const DestinationInfo: React.FC<{
+  destination: typeof destinations[number] & SelectionItems;
+}> = ({ destination }) => {
+  return (
+    <InfoWrapper
+      isSelected={destination.isSelected}
+      aria-hidden={!destination.isSelected}
+    >
+      <Heading2>{destination.name}</Heading2>
+      <Description color="secon">{destination.description}</Description>
+      <StatsWrapper>
+        <Stat>
+          <Subheading2 color="secon">Avg. distance</Subheading2>
+          <Subheading1>{destination.distance}</Subheading1>
+        </Stat>
+        <Stat>
+          <Subheading2 color="secon">Est. travel time</Subheading2>
+          <Subheading1>{destination.travel}</Subheading1>
+        </Stat>
+      </StatsWrapper>
+    </InfoWrapper>
+  );
+};
+
+const DestinationsInfo: React.FC = () => {
   const { items, select } = useSelection(destinations);
 
   return (
@@ -168,24 +192,7 @@ const DestinationInfo = () => {
         <Tabs onSelection={select} tabs={items} />
         <InfoSlidesWrapper>
           {items.map((destination) => (
-            <InfoWrapper
-              key={destination.id}
-              isSelected={destination.isSelected}
-              aria-hidden={!destination.isSelected}
-            >
-              <Heading2>{destination.name}</Heading2>
-              <Description color="secon">{destination.description}</Description>
-              <StatsWrapper>
-                <Stat>
-                  <Subheading2 color="secon">Avg. distance</Subheading2>
-                  <Subheading1>{destination.distance}</Subheading1>
-                </Stat>
-                <Stat>
-                  <Subheading2 color="secon">Est. travel time</Subheading2>
-                  <Subheading1>{destination.travel}</Subheading1>
-                </Stat>
-              </StatsWrapper>
-            </InfoWrapper>
+            <DestinationInfo key={destination.id} destination={destination} />
           ))}
         </InfoSlidesWrapper>
       </TabsAndInfoWrapper>
@@ -193,4 +200,4 @@ const DestinationInfo = () => {
   );
 };
 
-export default DestinationInfo;
+export default DestinationsInfo;

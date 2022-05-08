@@ -1,4 +1,4 @@
-import DestinationInfo from "components/sections/DestinationInfo";
+import DestinationsInfo from "components/sections/DestinationsInfo";
 import TopStepMessage from "components/TopStepMessage/TopStepMessage";
 import Background from "containers/Background/Background";
 import Head from "next/head";
@@ -12,7 +12,7 @@ const Destination = () => {
       </Head>
       <Background page="destination">
         <TopStepMessage prefix="01" message="Pick your destination" />
-        <DestinationInfo />
+        <DestinationsInfo />
       </Background>
     </>
   );

@@ -1,6 +1,6 @@
 import Bullets from "components/Bullets/Bullets";
 import { BodyText, Heading3, Heading4 } from "components/Text";
-import useSelection from "hooks/useSelection";
+import useSelection, { SelectionItems } from "hooks/useSelection";
 import Image from "next/image";
 import data from "public/data.json";
 import React from "react";
@@ -144,7 +144,24 @@ const Bio = styled(BodyText)`
   }
 `;
 
-const CrewInfo = () => {
+const MemberInfo: React.FC<{
+  member: typeof crew[number] & SelectionItems;
+}> = ({ member }) => {
+  return (
+    <InfoWrapper
+      isSelected={member.isSelected}
+      aria-hidden={!member.isSelected}
+    >
+      <Heading4 color="grey">{member.role}</Heading4>
+      <Heading3 as="h2">{member.name}</Heading3>
+      <Bio color="secon" center>
+        {member.bio}
+      </Bio>
+    </InfoWrapper>
+  );
+};
+
+const CrewInfo: React.FC = () => {
   const { select, items } = useSelection(crew);
 
   return (
@@ -168,17 +185,7 @@ const CrewInfo = () => {
         <Bullets type="small" items={items} onSelection={select} />
         <InfoSlidesWrapper>
           {items.map((member) => (
-            <InfoWrapper
-              key={member.id}
-              isSelected={member.isSelected}
-              aria-hidden={!member.isSelected}
-            >
-              <Heading4 color="grey">{member.role}</Heading4>
-              <Heading3 as="h2">{member.name}</Heading3>
-              <Bio color="secon" center>
-                {member.bio}
-              </Bio>
-            </InfoWrapper>
+            <MemberInfo key={member.id} member={member} />
           ))}
         </InfoSlidesWrapper>
       </InfoAndBulletsWrapper>
