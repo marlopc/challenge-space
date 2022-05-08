@@ -135,7 +135,10 @@ const TechnologyInfo = () => {
           <ImageSlide
             sources={tech.images}
             data-selected={tech.isSelected}
+            aria-hidden={!tech.isSelected}
             key={tech.id}
+            role="img"
+            aria-label={tech.name}
           />
         ))}
       </ImageSlidesWrapper>
@@ -143,7 +146,11 @@ const TechnologyInfo = () => {
         <NumericBullets items={items} onSelection={select} />
         <InfoSlidesWrapper>
           {items.map((tech) => (
-            <InfoWrapper key={tech.id} isSelected={tech.isSelected}>
+            <InfoWrapper
+              key={tech.id}
+              isSelected={tech.isSelected}
+              aria-hidden={!tech.isSelected}
+            >
               <NavText color="secon">The terminology...</NavText>
               <Heading3>{tech.name}</Heading3>
               <Description color="secon">{tech.description}</Description>

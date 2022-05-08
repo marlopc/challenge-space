@@ -154,10 +154,12 @@ const CrewInfo = () => {
           <ImageSlide
             key={member.id}
             src={member.images.png}
+            alt={member.name}
             layout="fill"
             objectFit="contain"
             objectPosition="bottom"
             data-selected={member.isSelected}
+            aria-hidden={!member.isSelected}
             priority={index === 0}
           />
         ))}
@@ -166,7 +168,11 @@ const CrewInfo = () => {
         <Bullets type="small" items={items} onSelection={select} />
         <InfoSlidesWrapper>
           {items.map((member) => (
-            <InfoWrapper key={member.id} isSelected={member.isSelected}>
+            <InfoWrapper
+              key={member.id}
+              isSelected={member.isSelected}
+              aria-hidden={!member.isSelected}
+            >
               <Heading4 color="grey">{member.role}</Heading4>
               <Heading3 as="h2">{member.name}</Heading3>
               <Bio color="secon" center>

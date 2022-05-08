@@ -49,7 +49,7 @@ const SmallBullets: React.FC<BulletsProps> = ({
     <SmallBulletsWrapper className={className}>
       {items.map((bullet, index) => (
         <li key={bullet.id} onClick={() => onSelection(index)}>
-          <SmallBulletButton>
+          <SmallBulletButton aria-label={`Bullet ${index + 1}`}>
             <Circle isSelected={bullet.isSelected} />
           </SmallBulletButton>
         </li>

@@ -160,6 +160,7 @@ const DestinationInfo = () => {
             objectFit="contain"
             alt={destination.name}
             priority={index === 0}
+            aria-hidden={!destination.isSelected}
           />
         ))}
       </ImageSlidesWrapper>
@@ -170,6 +171,7 @@ const DestinationInfo = () => {
             <InfoWrapper
               key={destination.id}
               isSelected={destination.isSelected}
+              aria-hidden={!destination.isSelected}
             >
               <Heading2>{destination.name}</Heading2>
               <Description color="secon">{destination.description}</Description>
