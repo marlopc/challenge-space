@@ -1,6 +1,6 @@
 import React from "react";
 
-type ContainerRef = React.RefObject<HTMLElement>;
+export type ContainerRef = React.RefObject<HTMLElement>;
 
 const useClickOutside = (
   container: ContainerRef | ContainerRef[],
