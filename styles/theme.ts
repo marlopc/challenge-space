@@ -89,14 +89,14 @@ const theme: DefaultTheme = {
   },
   effects: {
     glass: css`
-      background: rgba(255, 255, 255, 0.04);
+      background: #ffffff0a;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       @supports (backdrop-filter: blur()) {
         backdrop-filter: blur(81.5485px);
       }
 
       @supports (not (backdrop-filter: blur())) {
-        background: rgba(255, 255, 255, 0.08);
+        background: #ffffff14;
       }
     `,
   },
