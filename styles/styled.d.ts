@@ -1,4 +1,5 @@
 import "styled-components";
+import type { FlattenSimpleInterpolation } from "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
@@ -9,6 +10,7 @@ declare module "styled-components" {
       transparentWhite: string;
       grey: string;
       black: string;
+      glassFallback: string;
     };
     fonts: {
       names: [string, string];
@@ -88,7 +90,7 @@ declare module "styled-components" {
       };
     };
     effects: {
-      glass: string;
+      glass: FlattenSimpleInterpolation;
     };
     assets: {
       logo: string;

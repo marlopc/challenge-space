@@ -36,7 +36,7 @@ const Wrapper = styled.ul`
 const A = styled.a<{ prefix: string; isActive: boolean }>`
   display: flex;
   width: 100%;
-  padding: 5px 0 5px 15px;
+  padding: 5px 0 5px 30px;
   min-height: 48px;
   align-items: center;
   border-right: 3px solid

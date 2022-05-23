@@ -11,6 +11,7 @@ import {
   tabletAndDesktop,
   tabletOnly,
 } from "styles/breakpoints";
+import { glassEffectNotSupported } from "styles/support";
 
 const DRAWER_ANIMATION_TIME = 150;
 
@@ -106,6 +107,10 @@ const DrawerOrBar = styled.div<{ isOpen: boolean; isHiding: boolean }>`
   ${mobileOnly} {
     transition: transform ${DRAWER_ANIMATION_TIME}ms ease;
     transform: translateX(${(props) => (props.isOpen ? "0" : "100%")});
+
+    ${glassEffectNotSupported} {
+      background: ${(props) => props.theme.colors.glassFallback};
+    }
 
     ${(props) =>
       !props.isHiding &&

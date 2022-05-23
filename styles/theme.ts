@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme, css } from "styled-components";
 
 const theme: DefaultTheme = {
   colors: {
@@ -8,6 +8,7 @@ const theme: DefaultTheme = {
     transparentWhite: "#ffffff88",
     grey: "#aaaaaa",
     black: "#000000",
+    glassFallback: "#171925",
   },
   fonts: {
     names: ["Bellefair", "Barlow Condensed"],
@@ -87,10 +88,16 @@ const theme: DefaultTheme = {
     },
   },
   effects: {
-    glass: `background: rgba(255, 255, 255, 0.04);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(81.5485px);
-    -webkit-backdrop-filter: blur(81.5485px)
+    glass: css`
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      @supports (backdrop-filter: blur()) {
+        backdrop-filter: blur(81.5485px);
+      }
+
+      @supports (not (backdrop-filter: blur())) {
+        background: rgba(255, 255, 255, 0.08);
+      }
     `,
   },
   assets: {
